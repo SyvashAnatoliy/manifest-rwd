@@ -102,15 +102,14 @@ header {
 
   .hero-container {
     margin: 0 auto;
-    position: relative;
   }
 
   h2 {
     font-size: 48px;
     font-weight: 500;
-    position: absolute;
     top: 200px;
-    width: 35%;
+    margin-top: 0;
+    padding: 100px 500px 0 0
   }
 }
 

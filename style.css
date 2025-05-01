@@ -55,10 +55,67 @@ header {
   flex-direction: row;
   justify-content: space-between;
 
-  .header-nav {
+  .burger-menu {
+    width: 34px;
+    height: 20px;
+    display: none;
+    position: absolute;
+    top: 23px;
+    right: 75px;
+    background-color: #000;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 34px;
+      height: 5px;
+      background-color: #fff;
+      color: white;
+      position: absolute;
+      top: 4px;
+      transition: 500ms;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 0;
+      width: 34px;
+      height: 5px;
+      background-color: #fff;
+      transition: 500ms;
+    }
+  }
+
+  #burger-menu {
+    display: none;
+    transition: 500ms;
+
+    .burger-menu:has(+&:checked) {
+
+      filter: invert(1);
+    
+      &::before {
+        transform: rotate(32deg);
+        translate: 0 4px;
+      }
+  
+      &::after {
+        transform: rotate(-32deg);
+        translate: 0 -4px;
+      }
+    }
+  }
+
+  nav {
     display: flex;
     flex-direction: row;
     gap: 50px;
+  }
+
+  button {
+    position: relative;
   }
 
   ul {
@@ -343,33 +400,60 @@ footer {
     padding-inline: 34px;
   }
 
-  .container>h2 {
-    width: 60%;
-  }
+  header {
 
-  .l-posts>.l-posts-cards {
-    flex-direction: column;
+    .burger-menu {
+      display: block;
+    }
 
-    >div {
-      width: unset;
-      flex-direction: row;
+    nav {
+      display: none;
+    }
+
+    input:checked~nav {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 63px;
+      right: 0;
+      background-color: #fff;
+      padding: 20px;
       gap: 20px;
 
-      &:nth-child(2) {
-        flex-direction: row-reverse;
-      }
-
-      img {
-        width: calc(50% - 10px);
-
+      ul {
+        flex-direction: column;
+        gap: 20px;
       }
     }
   }
+}
 
-  footer>.footer-content {
-    max-width: 95%;
+.container>h2 {
+  width: 60%;
+}
+
+.l-posts>.l-posts-cards {
+  flex-direction: column;
+
+  >div {
     width: unset;
+    flex-direction: row;
+    gap: 20px;
+
+    &:nth-child(2) {
+      flex-direction: row-reverse;
+    }
+
+    img {
+      width: calc(50% - 10px);
+
+    }
   }
+}
+
+footer>.footer-content {
+  max-width: 95%;
+  width: unset;
 }
 
 @media screen and (max-width: 830px) {
@@ -390,7 +474,8 @@ footer {
     width: 80%;
   }
 
-  .blog>.blog-sect1, .blog>.blog-sect2 {
+  .blog>.blog-sect1,
+  .blog>.blog-sect2 {
     flex-direction: column;
 
     img {
@@ -401,11 +486,11 @@ footer {
     .blog-sect1-text {
       max-width: 100%;
     }
-  } 
+  }
 
   .blog>.blog-sect2 {
     flex-direction: column-reverse;
-    
+
     .blog-sect2-text {
       align-self: start;
       max-width: 100%;
